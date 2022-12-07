@@ -9,6 +9,7 @@ if (localStorage.getItem("UserName") === null) {
     else {
         localStorage.setItem("UserName", UserName1);
     }
+    document.getElementById("UserName").innerHTML =UserName1 ;
 }
 else {
     nowName = localStorage.getItem("UserName");
