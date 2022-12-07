@@ -1,0 +1,255 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav img {
+    width: 80px;
+    padding: 0px 15px;
+}
+
+#editLogo {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    padding: 5px 4px 3px 5.5px;
+    margin: 0px 5px;
+    border-radius: 50%;
+}
+
+#editLogo:hover {
+    background-color: rgb(255 146 66);
+}
+
+#navA {
+    color: white;
+    font-family: graduate;
+}
+
+#mainlink {
+    background-color: rgb(255 146 66);
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-family: Graduate;
+    font-size: 11.5px;
+    margin-right: 10px;
+}
+#mainlink:hover{
+    background-color: white;
+    border: 2px solid rgb(255 146 66);
+    color: rgb(255 146 66);
+}
+
+#allHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#homehead1 {
+    background-color: black;
+    height: 50vh;
+}
+
+#homehead2 {
+    font-family: Satisfy;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    padding-top: 40px;
+}
+.aboutbox{
+    background-color: rgba(255, 255, 255, 0.308);;
+    border-radius: 5px;
+    padding: 10px;
+}
+.btn2020{
+    padding: 3px;
+    background-color: rgb(0 0 0);
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-family: Graduate;
+    font-size: 13px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.btn2020:hover{
+    background-color: rgb(255 146 66);
+    border: 2px solid rgb(0, 0, 0);
+    color:white;
+}
+#mailid{
+    text-decoration:none;color:rgba(0, 0, 255, 0.654);
+}
+#mailid:hover{
+    text-decoration:none;color:rgb(0, 0, 255);
+}
+#hurryUp {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+#mainTime {
+    color: rgb(255 146 66);
+    font-family: Graduate;
+    padding: 6px;
+    padding-top: 15px;
+    font-size: 32px;
+}
+
+#homehead2 h1 {
+    font-family: Graduate;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    padding-bottom: 0;
+}
+
+#homehead2 h2 {
+    font-size: 35px;
+}
+
+#homehead2 h4 {
+    font-size: 28px;
+}
+
+#homehead3,
+#homehead4 {
+    box-shadow: 13px 16px 15px #2b2b2b47;
+    background-color: rgb(255 146 66);
+    margin: 3vh;
+    width: 50%;
+    min-height: 46vh;
+    margin-top: 10px;
+    border: 3px solid white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 50px;
+}
+
+#homehead3 h2,
+#homehead4 h2 {
+    font-family: Bree Serif;
+    font-size: 25px;
+}
+#para {
+    font-family: Bree Serif;
+    font-size: 16.5px;
+    text-align: left;
+}
+#homehead3 h3,
+#homehead4 h3 {
+    font-family: Nova Square;
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    nav img {
+        width: 50px;
+        padding: 3px;
+    }
+
+    #navA {
+        color: white;
+        font-family: graduate;
+        font-size: 16px;
+    }
+
+    #editLogo {
+        font-size: 12.5px;
+        padding: 5px 4px 3px 5.5px;
+        margin: 0px 2px;
+    }
+
+    #allHome {
+        display: block;
+    }
+
+    #homehead2 {
+        padding-top: 15px;
+    }
+
+    #homehead2 h2 {
+        font-size: 28px;
+    }
+
+    #homehead2 h4 {
+        font-size: 20px;
+    }
+
+    #mainTime {
+        font-size: 19px;
+        padding: 5px;
+    }
+
+    #homehead3,
+    #homehead4 {
+        min-height: 26vh;
+        margin: 3% 4%;
+        margin-top: 0;
+        padding: 3vh 4vh;
+        width: 92%
+    }
+
+    #homehead3 h2,
+    #homehead4 h2 {
+        font-size: 16px;
+    }
+
+    .aboutbox{
+        padding: 8px;
+    }
+    .btn2020{
+        padding: 4px;
+        border: 1.6px solid white;
+        font-size: 8px;
+    }
+
+    #homehead3 h3,
+    #homehead4 h3 {
+        font-size: 20px;
+    }
+    #para{
+    font-size: 10px;
+    padding: 0;
+    }
+    #mainlink {
+        font-size: 8px;
+        margin-right: 2px;
+    }
+}
+
+
+
+
+/* ======================= */
+/* #dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background:white;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: rgb(0, 0, 0); font-size:19px; padding:10px; color:#CCC;font-family: Graduate; }
+#dialogbox > div > #dialogboxbody{ background:rgb(255 169 76); padding:20px; color:#FFF;font-family:Bree Serif; }
+#dialogbox > div > #dialogboxfoot{ background: rgb(0, 0, 0); padding:10px; text-align:right; } */
