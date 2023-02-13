@@ -1,25 +1,33 @@
 //-------------local host name----------------
-let nowName;
-if (localStorage.getItem("UserName") === null) {
+
+let nowName,nowGroup;
+console.log(localStorage.getItem("UserNameUp1"));
+if (localStorage.getItem("UserNameUp1") === null) {
     AddName();
 }
 else {
-    nowName = localStorage.getItem("UserName");
+    nowName = localStorage.getItem("UserNameUp1");
     nowGroup = localStorage.getItem("Group");
     document.getElementById("UserName").innerHTML = nowName;
 }
 
 function AddName() {
     var UserName1 = prompt("Enter your Name");
-    var Group1 = prompt("Enter Your Group:");
-    if (UserName1.length < 3 || Group1.length == 0) {
-        console.log("Invalid Input !!");
+    var Group1 = prompt("Enter Your Group A1 or A2:");
+    if (UserName1.length < 3 || Group1 != "A1" && Group1 != "A2") {
+        // console.log("Invalid Input !!");
+        var just = confirm("Invalid Credentials");
+        if (just) {
+            EditName();
+        }
     }
     else {
-        localStorage.setItem("UserName", UserName1);
+        localStorage.setItem("UserNameUp1", UserName1);
         localStorage.setItem("Group", Group1);
     }
-    document.getElementById("UserName").innerHTML = UserName1;
+    nowName = localStorage.getItem("UserNameUp1");
+    nowGroup = localStorage.getItem("Group");
+    document.getElementById("UserName").innerHTML = nowName;
 }
 
 
@@ -35,10 +43,10 @@ function EditName() {
         }
     }
     else {
-        localStorage.setItem("UserName", UserName2);
+        localStorage.setItem("UserNameUp1", UserName2);
         localStorage.setItem("Group", Group2);
     }
-    nowName = localStorage.getItem("UserName");
+    nowName = localStorage.getItem("UserNameUp1");
     nowGroup = localStorage.getItem("Group");
     document.getElementById("UserName").innerHTML = nowName;
 
@@ -466,34 +474,3 @@ else {
 }
 updateTimeTable();
 setInterval(updateTimeTable,300000);
-// console.log(countdown);
-
-// function SetCountdown(){
-//     let CountdownTime = document.getElementById("CountdownTime");
-//     if (countdown=="")
-//     {
-//         CountdownTime.innerHTML = "";        
-//     }
-//     else{    
-//         const da = new Date();
-//         let [hour1,min1]=countdown.split('.');
-//         let date1=da.getDate();
-//         let month1=da.getMonth()+1;
-//         let year1=da.getUTCFullYear();
-//         let a =new Date(month1+" "+date1+", "+year1+" "+hour1+":"+min1).getTime();
-//         let now=new Date().getTime();
-//         var diff=a-now;
-//         // console.log(a,now);
-//         // console.log(diff);   
-//         let hour2=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-//         let min2=Math.floor((diff%(1000*60*60))/(1000*60));
-//         let sec2=Math.floor((diff%(1000*60))/(1000));
-//         CountdownTime.innerHTML=hour2 + " : " + min2 + " : " + sec2; 
-//         if(min2<=5)
-//         {
-//             CountdownTime.style.color="#960000";
-//         }
-//     }
-// }
-// SetCountdown();
-// setInterval(SetCountdown,1000);
