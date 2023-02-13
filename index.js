@@ -1,64 +1,48 @@
-
 //-------------local host name----------------
 let nowName;
 if (localStorage.getItem("UserName") === null) {
+    AddName();
+}
+else {
+    nowName = localStorage.getItem("UserName");
+    nowGroup = localStorage.getItem("Group");
+    document.getElementById("UserName").innerHTML = nowName;
+}
+
+function AddName() {
     var UserName1 = prompt("Enter your Name");
-    if (UserName1.length < 3) {
+    var Group1 = prompt("Enter Your Group:");
+    if (UserName1.length < 3 || Group1.length == 0) {
         console.log("Invalid Input !!");
     }
     else {
         localStorage.setItem("UserName", UserName1);
+        localStorage.setItem("Group", Group1);
     }
-    document.getElementById("UserName").innerHTML =UserName1 ;
+    document.getElementById("UserName").innerHTML = UserName1;
 }
-else {
+
+
+function EditName() {
+    var UserName2 = prompt("Enter your Name", nowName);
+    var Group2 = prompt("Enter Your Group A1 or A2:", nowGroup);
+
+    if (UserName2.length < 3 || Group2 != "A1" && Group2 != "A2") {
+        // console.log("Invalid Input !!");
+        var just = confirm("Invalid Credentials");
+        if (just) {
+            EditName();
+        }
+    }
+    else {
+        localStorage.setItem("UserName", UserName2);
+        localStorage.setItem("Group", Group2);
+    }
     nowName = localStorage.getItem("UserName");
+    nowGroup = localStorage.getItem("Group");
     document.getElementById("UserName").innerHTML = nowName;
+
 }
-// +++++++++++++++++++++++++++++++++++
-// function CustomPrompt() {
-//     this.render = function (dialog, func) {
-//         var winW = window.innerWidth;
-//         var winH = window.innerHeight;
-//         var dialogoverlay = document.getElementById('dialogoverlay');
-//         var dialogbox = document.getElementById('dialogbox');
-//         dialogoverlay.style.display = "block";
-//         dialogoverlay.style.height = winH + "px";
-//         dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
-//         dialogbox.style.top = "100px";
-//         dialogbox.style.display = "block";
-//         document.getElementById('dialogboxhead').innerHTML = "A value is required";
-//         document.getElementById('dialogboxbody').innerHTML = dialog;
-//         document.getElementById('dialogboxbody').innerHTML += '<br><input id="prompt_value1">';
-//         document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Prompt.ok(\'' + func + '\')">OK</button> <button onclick="Prompt.cancel()">Cancel</button>';
-//     }
-//     this.cancel = function () {
-//         document.getElementById('dialogbox').style.display = "none";
-//         document.getElementById('dialogoverlay').style.display = "none";
-//     }
-//     this.ok = function (func) {
-//         var prompt_value1 = document.getElementById('prompt_value1').value;
-//         window[func](prompt_value1);
-//         document.getElementById('dialogbox').style.display = "none";
-//         document.getElementById('dialogoverlay').style.display = "none";
-//     }
-// }var Prompt = new CustomPrompt();
-//==============edit Name=================
-
-var btn = document.getElementById("editLogo");
-btn.addEventListener("click", () => {
-    var UserName2=prompt("Enter your Name",nowName);
-    if (UserName2.length<3) {
-        console.log("Invalid Input !!");
-    }
-    else{
-        localStorage.setItem("UserName",UserName2);
-    }
-    nowName=localStorage.getItem("UserName");
-    document.getElementById("UserName").innerHTML=nowName;
-
-})
-
 
 // ----------TimeLine----------
 
@@ -111,61 +95,72 @@ let fp = document.getElementById("firstPeriod");
 let ft = document.getElementById("firstTime");
 let sp = document.getElementById("secondPeriod");
 let st = document.getElementById("secondTime");
+let countdown;
 
+function updateTimeTable(){
 if (day == 1) {
-    if (time < 15.20 && time > 14.25) {
-        fp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        ft.innerHTML = ("02:25 - 03:20");
+    if (time < 15.20 && time > 13.30) {
+        fp.innerHTML = ("CLAB RoomNo:466");
+        ft.innerHTML = ("01:30 - 02:25");
         sp.innerHTML = ("Tommorow:-Classes: COA RoomNo:112");
         st.innerHTML = ("(TUES)09:50 - 10:45");
-    }
-    else if (time < 14.25 && time > 13.30) {
-        fp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        ft.innerHTML = ("01:30 - 02:25");
-        sp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        st.innerHTML = ("02:25 - 03:20");
+        countdown="";
     }
     else if (time < 13.30 && time > 12.35) {
         fp.innerHTML = ("OS || RoomNo:334");
         ft.innerHTML = ("12:35 - 01.30");
-        sp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        st.innerHTML = ("01:30 - 02:25");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
+            st.innerHTML = ("01:30 - 03:20");
+            countdown=12.35;
+        }
+        else {
+            sp.innerHTML = ("Tommorow:-Classes: COA RoomNo:112");
+            st.innerHTML = ("(TUES)09:50 - 10:45");
+            countdown="";
+        }
     }
     else if (time < 12.35 && time > 11.40) {
         fp.innerHTML = ("MACA || RoomNo:334");
         ft.innerHTML = ("11:40 - 12.35");
         sp.innerHTML = ("OS || RoomNo:334");
         st.innerHTML = ("12:35 - 01.30");
+        countdown=11.40;
     }
     else if (time < 11.40 && time > 10.45) {
         fp.innerHTML = ("--LUNCH BREAK--");
         ft.innerHTML = ("10:45 - 11.40");
         sp.innerHTML = ("MACA || RoomNo:334");
         st.innerHTML = ("11:40 - 12.35");
+        countdown=10.45;
     }
     else if (time < 10.45 && time > 9.50) {
         fp.innerHTML = ("ENGLISH || RoomNo:334");
         ft.innerHTML = ("09:50 - 10:45");
         sp.innerHTML = ("LUNCH -> MACA || RoomNo:334");
         st.innerHTML = ("11:40 - 12.35");
+        countdown=19.50;
     }
     else if (time < 9.50 && time > 8.55) {
         fp.innerHTML = ("COA || RoomNo:334");
         ft.innerHTML = ("08:55 - 09.50");
         sp.innerHTML = ("ENGLISH || RoomNo:334");
         st.innerHTML = ("09:50 - 10:45");
+        countdown=8.55;
     }
     else if (time < 8.55) {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("COA || RoomNo:334");
         st.innerHTML = ("(MON)08:55 - 09:50");
+        countdown=8.55;
     }
     else {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("Tommorow Classes: \n COA RoomNo:112");
         st.innerHTML = ("(TUES)09:50 - 10:45");
+        countdown="";
     }
 }
 else if (day == 2) {
@@ -174,154 +169,218 @@ else if (day == 2) {
         ft.innerHTML = ("02:25 - 03:20");
         sp.innerHTML = ("Tommorow Classes: COA RoomNo:112");
         st.innerHTML = ("(WED)08:55 - 09:50");
+        countdown="";
     }
     else if (time < 14.25 && time > 13.30) {
         fp.innerHTML = ("NETWORK || RoomNo:334");
         ft.innerHTML = ("01:30 - 02:25");
-        sp.innerHTML = ("OS || RoomNo:466");
+        sp.innerHTML = ("OS || RoomNo:334");
         st.innerHTML = ("02:25 - 03:20");
+        countdown=13.30;
     }
     else if (time < 13.30 && time > 12.35) {
         fp.innerHTML = ("--LUNCH BREAK--");
         ft.innerHTML = ("12:35 - 01.30");
         sp.innerHTML = ("NETWORK || RoomNo:334");
         st.innerHTML = ("01:30 - 02:25");
+        countdown=12.35;
     }
     else if (time < 12.35 && time > 11.40) {
         fp.innerHTML = ("C Programming || RoomNo:112");
         ft.innerHTML = ("11:40 - 12.35");
         sp.innerHTML = ("LUNCH -> NETWORK || RoomNo:334");
         st.innerHTML = ("01.30 - 02:25");
+        countdown=11.40;
     }
     else if (time < 11.40 && time > 10.45) {
         fp.innerHTML = ("ENGLISH || RoomNo:112");
         ft.innerHTML = ("10:45 - 11.40");
         sp.innerHTML = ("C Programming || RoomNo:112");
         st.innerHTML = ("11:40 - 12.35");
+        countdown=10.45;
     }
     else if (time < 10.45 && time > 9.50) {
         fp.innerHTML = ("COA || RoomNo:112");
         ft.innerHTML = ("09:50 - 10:45");
         sp.innerHTML = ("ENGLISH || RoomNo:112");
         st.innerHTML = ("10:45 - 11.40");
+        countdown=9.50;
     }
     else if (time < 9.50) {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("COA || RoomNo:112");
         st.innerHTML = ("(TUES))09:50 - 10:45");
+        countdown=9.50;
     }
     else {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("Tommorow Classes: COA RoomNo:112");
         st.innerHTML = ("(WED)08:55 - 09:50");
+        countdown="";
     }
 }
 else if (day == 3) {
     if (time < 14.25 && time > 13.30) {
-        fp.innerHTML = ("C Programming || RoomNo:334");
-        ft.innerHTML = ("01:30 - 02:25");
-        sp.innerHTML = ("--NO CLASSES--");
-        st.innerHTML = ("");
+        if (nowGroup == "A1") {
+            fp.innerHTML = ("--NO CLASSES--");
+            ft.innerHTML = ("");
+            sp.innerHTML = ("Tomorrow:CLAB RoomNo:466");
+            st.innerHTML = ("8.00 - 9.50");
+        }
+        else {
+            fp.innerHTML = ("CLAB RoomNo:465");
+            ft.innerHTML = ("1:30 - 03.20");
+            sp.innerHTML = ("--NO CLASSES--");
+            st.innerHTML = ("");
+            countdown=9.50;
+        }
+        countdown="";
     }
-    else if (time < 13.30 && time > 12.35) {
-        fp.innerHTML = ("OS-LAB(A1) RoomNo:466||LCS-LAB(A2) RoomNo:309(A)");
-        ft.innerHTML = ("12:35 - 01.30");
-        sp.innerHTML = ("C Programming || RoomNo:334");
-        st.innerHTML = ("01:30 - 02:25");
-    }
-    else if (time < 12.35 && time > 11.40) {
-        fp.innerHTML = ("OS-LAB(A1) RoomNo:466 LCS-LAB(A2) RoomNo:309(A)");
-        ft.innerHTML = ("11:40 - 12.35");
-        sp.innerHTML = ("OS-LAB(A1) RoomNo:466 LCS-LAB(A2) RoomNo:309(A)");
-        st.innerHTML = ("12:35 - 01.30");
+    else if (time < 13.30 && time > 11.40) {
+        if (nowGroup == "A1") {
+            fp.innerHTML = ("OS-LAB RoomNo:466");
+            ft.innerHTML = ("11:40 - 01.30");
+            sp.innerHTML = ("--NO CLASSES--");
+            st.innerHTML = ("");
+        }
+        else {
+            fp.innerHTML = ("LCS-LAB RoomNo:309");
+            ft.innerHTML = ("11:40 - 01.30");
+            sp.innerHTML = ("CLAB RoomNo:465");
+            st.innerHTML = ("01:30 - 03.20");
+        }
+        countdown=11.40;
     }
     else if (time < 11.40 && time > 10.45) {
         fp.innerHTML = ("--LUNCH BREAK--");
         ft.innerHTML = ("10:45 - 11.40");
-        sp.innerHTML = ("OS-LAB(A1) RoomNo:466 LCS-LAB(A2) RoomNo:309(A)");
-        st.innerHTML = ("11:40 - 12.35");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("LUNCH -> OS-LAB RoomNo:466");
+            st.innerHTML = ("11:40 - 12.35");
+        }
+        else {
+            sp.innerHTML = ("LCS-LAB RoomNo:309(A)");
+            st.innerHTML = ("11:40 - 12.35");
+        }
+        countdown=10.45;
     }
     else if (time < 10.45 && time > 9.50) {
         fp.innerHTML = ("MACA || RoomNo:112");
         ft.innerHTML = ("09:50 - 10:45");
-        sp.innerHTML = ("LUNCH -> OS-LAB(A1) RoomNo:466 LCS-LAB(A2) RoomNo:309(A)");
-        st.innerHTML = ("11:40 - 12.35");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("LUNCH -> OS-LAB RoomNo:466");
+            st.innerHTML = ("11:40 - 12.35");
+        }
+        else {
+            sp.innerHTML = ("LCS-LAB RoomNo:309(A)");
+            st.innerHTML = ("11:40 - 12.35");
+        }
+        countdown=9.50;
     }
     else if (time < 9.50 && time > 8.55) {
         fp.innerHTML = ("COA || RoomNo:112");
         ft.innerHTML = ("08:55 - 09.50");
         sp.innerHTML = ("MACA || RoomNo:112");
         st.innerHTML = ("09:50 - 10:45");
+        countdown=8.55;
     }
     else if (time < 8.55) {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("COA || RoomNo:112");
         st.innerHTML = ("(WED)08:55 - 09:50");
+        countdown=8.55;
     }
     else {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
-        sp.innerHTML = ("Tommorow Classes: CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        st.innerHTML = ("(THU)08:00 - 08:55");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("Tommorow Classes: CLAB RoomNo:466");
+            st.innerHTML = ("(THU)08:00 - 08:55");
+        }
+        else {
+            sp.innerHTML = ("Tommorow Classes: CLAB RoomNo:465");
+            st.innerHTML = ("(THU)08:00 - 08:55");
+        }
+        countdown="";
     }
 }
 else if (day == 4) {
-    if (time < 14.25 && time > 13.30) {
-        fp.innerHTML = ("ENGLISH || RoomNo:112");
-        ft.innerHTML = ("01:30 - 02:25");
+    if (time < 15.20 && time > 14.25) {
+        fp.innerHTML = ("C Programming || RoomNo:332");
+        ft.innerHTML = ("2:25 - 3:20");
         sp.innerHTML = ("--NO CLASSES--");
         st.innerHTML = ("");
+        countdown="";
+    }
+    else if (time < 14.25 && time > 13.30) {
+        fp.innerHTML = ("ENGLISH || RoomNo:112");
+        ft.innerHTML = ("01:30 - 02:25");
+        sp.innerHTML = ("C Programming || RoomNo:332");
+        st.innerHTML = ("2:25 - 3:20");
+        countdown=13.30;
     }
     else if (time < 13.30 && time > 12.35) {
         fp.innerHTML = ("NETWORK || RoomNo:112");
         ft.innerHTML = ("12:35 - 01.30");
         sp.innerHTML = ("ENGLISH || RoomNo:112");
         st.innerHTML = ("01:30 - 02:25");
+        countdown=12.35;
     }
     else if (time < 12.35 && time > 11.40) {
         fp.innerHTML = ("--LUNCH BREAK--");
         ft.innerHTML = ("11:40 - 12.35");
         sp.innerHTML = ("NETWORK || RoomNo:112");
         st.innerHTML = ("12:35 - 01.30");
+        countdown=11.40;
     }
     else if (time < 11.40 && time > 10.45) {
         fp.innerHTML = ("MACA || RoomNo:334");
         ft.innerHTML = ("10:45 - 11.40");
         sp.innerHTML = ("LUNCH -> NETWORK || RoomNo:112");
         st.innerHTML = ("12:35 - 01.30");
+        countdown=10.45;
     }
     else if (time < 10.45 && time > 9.50) {
         fp.innerHTML = ("OS || RoomNo:334");
         ft.innerHTML = ("09:50 - 10:45");
         sp.innerHTML = ("MACA || RoomNo:334");
         st.innerHTML = ("10:45 - 11.40");
+        countdown=9.50;
     }
-    else if (time < 9.50 && time > 8.55) {
-        fp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
-        ft.innerHTML = ("08:55 - 09.50");
+    else if (time < 9.50 && time > 8.00) {
+        if (nowGroup == "A1") {
+            fp.innerHTML = ("CLAB RoomNo:466");
+            ft.innerHTML = ("08:00 - 09.50");
+        }
+        else {
+            fp.innerHTML = ("CLAB RoomNo:465");
+            ft.innerHTML = ("08:00 - 09.50");
+        }
         sp.innerHTML = ("OS || RoomNo:334");
         st.innerHTML = ("09:50 - 10:45");
+        countdown=8.00;
     }
-    else if (time < 8.55 && time > 8.00) {
-        fp.innerHTML = ("CLAB RoomNo:466(A1) CLAB RoomNo:465(A2)");
-        ft.innerHTML = ("08:00 - 08.55");
-        sp.innerHTML = ("CLAB RoomNo:466(A1) CLAB RoomNo:465(A2)");
-        st.innerHTML = ("08:55 - 09:50");
-    }
-    else if (time < 8.55) {
+    else if (time < 8.00) {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
-        sp.innerHTML = ("CLAB RoomNo:466(A1) CLAB RoomNo:465(A2)");
-        st.innerHTML = ("(THU)08:00 - 09:50");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("CLAB RoomNo:466");
+            st.innerHTML = ("(THU)08:00 - 09:50");
+        } else {
+            sp.innerHTML = ("CLAB RoomNo:465");
+            st.innerHTML = ("(THU)08:00 - 09:50");
+        }
+        countdown=8.00;
     }
     else {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("Tommorow Classes: MACA RoomNo:112");
         st.innerHTML = ("(FRI)09:50 - 10:45");
+        countdown="";
     }
 }
 else if (day == 5) {
@@ -330,63 +389,111 @@ else if (day == 5) {
         ft.innerHTML = ("02:25 - 03:20");
         sp.innerHTML = ("--NO CLASSES--");
         st.innerHTML = ("");
+        countdown="";
     }
     else if (time < 14.25 && time > 13.30) {
         fp.innerHTML = ("C Programming || RoomNo:334");
         ft.innerHTML = ("01:30 - 02:25");
         sp.innerHTML = ("NETWORK || RoomNo:334");
         st.innerHTML = ("02:25 - 03:20");
+        countdown=13.30;
     }
-    else if (time < 13.30 && time > 12.35) {
-        fp.innerHTML = ("(A1)LCS-LAB RoomNo:309(a)||OS-LAB RoomNo:466(A2)");
-        ft.innerHTML = ("12:35 - 01.30");
+    else if (time < 13.30 && time > 11.40) {
+        if (nowGroup == "A1") {
+            fp.innerHTML = ("LCS-LAB RoomNo:309(A)");
+            ft.innerHTML = ("11:40 - 01.30");
+        } else {
+            fp.innerHTML = ("OS-LAB RoomNo:466");
+            ft.innerHTML = ("11:40 - 01.30");
+        }
         sp.innerHTML = ("C Programming || RoomNo:334");
         st.innerHTML = ("01:30 - 02:25");
-    }
-    else if (time < 12.35 && time > 11.40) {
-        fp.innerHTML = ("(A1)LCS-LAB RoomNo:309(a)||OS-LAB RoomNo:466(A2)");
-        ft.innerHTML = ("11:40 - 12.35");
-        sp.innerHTML = ("(A1)LCS-LAB RoomNo:309(a)||OS-LAB RoomNo:466(A2)");
-        st.innerHTML = ("12.35 - 01:30");
+        countdown=11.40;
     }
     else if (time < 11.40 && time > 10.45) {
         fp.innerHTML = ("--LUNCH BREAK--");
         ft.innerHTML = ("10:45 - 11.40");
-        sp.innerHTML = ("(A1)LCS-LAB RoomNo:309(a) || OS-LAB RoomNo:466(A2)");
-        st.innerHTML = ("11:40 - 01:30");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("LUNCH -> LCS-LAB RoomNo:309(A)");
+            st.innerHTML = ("11:40 - 01.30");
+        } else {
+            sp.innerHTML = ("LUNCH -> OS-LAB RoomNo:466");
+            st.innerHTML = ("11:40 - 01.30");
+        }
+        countdown=10.45;
     }
     else if (time < 10.45 && time > 9.50) {
         fp.innerHTML = ("MACA || RoomNo:112");
         ft.innerHTML = ("09:50 - 10:45");
-        sp.innerHTML = ("LUNCH -> (A1)LCS-LAB RoomNo:309(a) || OS-LAB RoomNo:466(A2)");
-        st.innerHTML = ("11:40 - 01.30");
+        if (nowGroup == "A1") {
+            sp.innerHTML = ("LUNCH -> LCS-LAB RoomNo:309(A)");
+            st.innerHTML = ("11:40 - 01.30");
+        } else {
+            sp.innerHTML = ("OS-LAB RoomNo:466");
+            st.innerHTML = ("11:40 - 01.30");
+        }
+        countdown=9.50;
     }
     else if (time < 9.50) {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("MACA || RoomNo:112");
         st.innerHTML = ("(FRI)09:50 - 10:45");
+        countdown=9.50;
     }
     else {
         fp.innerHTML = ("--NO CLASSES--");
         ft.innerHTML = ("");
         sp.innerHTML = ("Next Classes: COA RoomNo:334");
         st.innerHTML = ("(MON)08:55 - 09:50");
+        countdown="";
     }
 }
 else if (day == 6) {
-    fp.innerHTML = ("--NO CLASSES--");
+    fp.innerHTML = ("SaturDay\n--NO CLASSES--");
     ft.innerHTML = ("");
     sp.innerHTML = ("Next Classes: COA RoomNo:334");
     st.innerHTML = ("(MON)08:55 - 09:50");
+    countdown="";
 }
 else {
-    fp.innerHTML = ("--NO CLASSES--");
+    fp.innerHTML = ("SunDay\n--NO CLASSES--");
     ft.innerHTML = ("");
     sp.innerHTML = ("Tommorow Classes: COA RoomNo:334");
     st.innerHTML = ("(MON)08:55 - 09:50");
+    countdown="";
 }
+}
+updateTimeTable();
+setInterval(updateTimeTable,300000);
+// console.log(countdown);
 
-
-
-
+// function SetCountdown(){
+//     let CountdownTime = document.getElementById("CountdownTime");
+//     if (countdown=="")
+//     {
+//         CountdownTime.innerHTML = "";        
+//     }
+//     else{    
+//         const da = new Date();
+//         let [hour1,min1]=countdown.split('.');
+//         let date1=da.getDate();
+//         let month1=da.getMonth()+1;
+//         let year1=da.getUTCFullYear();
+//         let a =new Date(month1+" "+date1+", "+year1+" "+hour1+":"+min1).getTime();
+//         let now=new Date().getTime();
+//         var diff=a-now;
+//         // console.log(a,now);
+//         // console.log(diff);   
+//         let hour2=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+//         let min2=Math.floor((diff%(1000*60*60))/(1000*60));
+//         let sec2=Math.floor((diff%(1000*60))/(1000));
+//         CountdownTime.innerHTML=hour2 + " : " + min2 + " : " + sec2; 
+//         if(min2<=5)
+//         {
+//             CountdownTime.style.color="#960000";
+//         }
+//     }
+// }
+// SetCountdown();
+// setInterval(SetCountdown,1000);
