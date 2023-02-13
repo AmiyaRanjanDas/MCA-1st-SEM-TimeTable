@@ -13,12 +13,12 @@ nav img {
     font-size: 16px;
     color: rgb(255, 255, 255);
     padding: 5px 4px 3px 5.5px;
-    margin: 0px 5px;
+    /* margin: 0px 7px; */
     border-radius: 50%;
 }
 
 #editLogo:hover {
-    background-color: rgb(255 146 66);
+    background: linear-gradient(-142deg, #ff0000, #fe00ff, #8200c5);
 }
 
 #navA {
@@ -27,7 +27,7 @@ nav img {
 }
 
 #mainlink {
-    background-color: rgb(255 146 66);
+    background: linear-gradient(-142deg, #ff0000, #fe00ff, #8200c5);
     border: 2px solid white;
     border-radius: 5px;
     color: white;
@@ -35,10 +35,16 @@ nav img {
     font-size: 11.5px;
     margin-right: 10px;
 }
-#mainlink:hover{
-    background-color: white;
-    border: 2px solid rgb(255 146 66);
-    color: rgb(255 146 66);
+
+#mainlink:hover {
+    background: transparent;
+}
+
+#UserName {
+    background: linear-gradient(-142deg, #ff0000, #fe00ff, #8200c5);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    padding:0 9px;
 }
 
 #allHome {
@@ -49,7 +55,7 @@ nav img {
 
 #homehead1 {
     background-color: black;
-    height: 50vh;
+    height: 25rem;
 }
 
 #homehead2 {
@@ -59,12 +65,14 @@ nav img {
     padding: 5px;
     padding-top: 40px;
 }
-.aboutbox{
-    background-color: rgba(255, 255, 255, 0.308);;
+
+.aboutbox {
+    background-color: rgba(255, 255, 255, 0.308);
     border-radius: 5px;
     padding: 10px;
 }
-.btn2020{
+
+.btn2020 {
     padding: 3px;
     background-color: rgb(0 0 0);
     border: 2px solid white;
@@ -75,17 +83,23 @@ nav img {
     margin-right: 10px;
     text-decoration: none;
 }
-.btn2020:hover{
-    background-color: rgb(255 146 66);
+
+.btn2020:hover {
+    background-color: linear-gradient(-142deg, #ff0000, #fe00ff, #8200c5);
     border: 2px solid rgb(0, 0, 0);
-    color:white;
+    color: white;
 }
-#mailid{
-    text-decoration:none;color:rgba(0, 0, 255, 0.654);
+
+/* #mailid {
+    text-decoration: none;
+    color: rgba(0, 255, 255);
 }
-#mailid:hover{
-    text-decoration:none;color:rgb(0, 0, 255);
-}
+
+#mailid:hover {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+} */
+
 #hurryUp {
     display: flex;
     align-items: center;
@@ -93,7 +107,9 @@ nav img {
 }
 
 #mainTime {
-    color: rgb(255 146 66);
+    background: linear-gradient(-142deg, #ff2929,#ff2828, #fe00ff, #8200c5);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     font-family: Graduate;
     padding: 6px;
     padding-top: 15px;
@@ -118,11 +134,11 @@ nav img {
 
 #homehead3,
 #homehead4 {
-    box-shadow: 13px 16px 15px #2b2b2b47;
-    background-color: rgb(255 146 66);
+    box-shadow: 13px 16px 15px #ffffff4d;
+    background: linear-gradient(-142deg, #ff0000, #fe00ff, #8200c5);
     margin: 3vh;
     width: 50%;
-    min-height: 46vh;
+    min-height: 21rem;
     margin-top: 10px;
     border: 3px solid white;
     border-radius: 15px;
@@ -138,11 +154,13 @@ nav img {
     font-family: Bree Serif;
     font-size: 25px;
 }
+
 #para {
     font-family: Bree Serif;
-    font-size: 16.5px;
+    font-size: 16px;
     text-align: left;
 }
+
 #homehead3 h3,
 #homehead4 h3 {
     font-family: Nova Square;
@@ -151,19 +169,26 @@ nav img {
     color: white;
     padding: 10px;
 }
+
 /* ======================================= */
 
-#mypdf{
+#mypdf {
     width: 98%;
     height: auto;
 }
-#pdfdiv{
-    background:rgba(0, 0, 0, 0.15);
-    display:flex;justify-content: center;
-     width: 100%;height:100vh;
+
+#pdfdiv {
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
     padding: 10px;
 }
-
+#updateid
+{
+    color: white;
+}
 
 /* ======================================== */
 @media only screen and (max-width: 800px) {
@@ -207,7 +232,7 @@ nav img {
 
     #homehead3,
     #homehead4 {
-        min-height: 26vh;
+        min-height: 15rem;
         margin: 3% 4%;
         margin-top: 0;
         padding: 3vh 4vh;
@@ -219,10 +244,11 @@ nav img {
         font-size: 16px;
     }
 
-    .aboutbox{
+    .aboutbox {
         padding: 8px;
     }
-    .btn2020{
+
+    .btn2020 {
         padding: 4px;
         border: 1.6px solid white;
         font-size: 8px;
@@ -232,48 +258,29 @@ nav img {
     #homehead4 h3 {
         font-size: 20px;
     }
-    #para{
-    font-size: 10px;
-    padding: 0;
+
+    #para {
+        font-size: 10.8px;
+        padding: 0;
     }
+
     #mainlink {
         font-size: 8px;
         margin-right: 2px;
     }
+
     /* ============================================= */
-    #mypdf{
+    #mypdf {
         width: 98%;
         height: 40%;
     }
-    #pdfdiv{
-        width: 100%;height:100vh;
+
+    #pdfdiv {
+        width: 100%;
+        height: 100vh;
         padding: 10px;
     }
+    #updateid{
+        font-size:17px;
+    }
 }
-
-
-
-
-/* ======================= */
-/* #dialogoverlay{
-	display: none;
-	opacity: .8;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	background: #FFF;
-	width: 100%;
-	z-index: 10;
-}
-#dialogbox{
-	display: none;
-	position: fixed;
-	background:white;
-	border-radius:7px; 
-	width:550px;
-	z-index: 10;
-}
-#dialogbox > div{ background:#FFF; margin:8px; }
-#dialogbox > div > #dialogboxhead{ background: rgb(0, 0, 0); font-size:19px; padding:10px; color:#CCC;font-family: Graduate; }
-#dialogbox > div > #dialogboxbody{ background:rgb(255 169 76); padding:20px; color:#FFF;font-family:Bree Serif; }
-#dialogbox > div > #dialogboxfoot{ background: rgb(0, 0, 0); padding:10px; text-align:right; } */
