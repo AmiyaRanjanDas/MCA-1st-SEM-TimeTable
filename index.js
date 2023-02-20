@@ -110,11 +110,11 @@ if (day == 1) {
     if (time < 15.20 && time > 13.30) {
         if (nowGroup == "A1") {
             fp.innerHTML = ("CLAB RoomNo:466");
-            fp.innerHTML = ("01:30 - 03:20");
+            ft.innerHTML = ("01:30 - 03:20");
         }
         else {
             fp.innerHTML =("--NO CLASSES--");
-            fp.innerHTML = ("");
+            ft.innerHTML = ("");
         }
         sp.innerHTML = ("Tommorow:-Classes: COA RoomNo:112");
         st.innerHTML = ("(TUES)09:50 - 10:45");
