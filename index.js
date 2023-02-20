@@ -108,8 +108,14 @@ let countdown;
 function updateTimeTable(){
 if (day == 1) {
     if (time < 15.20 && time > 13.30) {
-        fp.innerHTML = ("CLAB RoomNo:466");
-        ft.innerHTML = ("01:30 - 02:25");
+        if (nowGroup == "A1") {
+            fp.innerHTML = ("CLAB RoomNo:466");
+            fp.innerHTML = ("01:30 - 03:20");
+        }
+        else {
+            fp.innerHTML =("--NO CLASSES--");
+            fp.innerHTML = ("");
+        }
         sp.innerHTML = ("Tommorow:-Classes: COA RoomNo:112");
         st.innerHTML = ("(TUES)09:50 - 10:45");
         countdown="";
@@ -118,7 +124,7 @@ if (day == 1) {
         fp.innerHTML = ("OS || RoomNo:334");
         ft.innerHTML = ("12:35 - 01.30");
         if (nowGroup == "A1") {
-            sp.innerHTML = ("CLAB RoomNo:466(A1)||CLAB RoomNo:465(A2)");
+            sp.innerHTML = ("CLAB RoomNo:466");
             st.innerHTML = ("01:30 - 03:20");
             countdown="13.30";
         }
